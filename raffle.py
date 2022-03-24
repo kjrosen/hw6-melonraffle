@@ -4,7 +4,10 @@ from random import choice
 
 
 class Customer:
-    """A customer at Ubermelon."""
+    """A customer at Ubermelon.
+    
+    Each class object has class attributes: name, email, street, city, zipcode
+    """
 
     def __init__(self, name, email, street, city, zipcode):
         self.name = name
@@ -30,19 +33,19 @@ def get_customers_from_file(customer_file_path):
     #   customer-name | email | street | city | zipcode
 
     for line in customer_file:
-        customer_data = line.strip().split("|")
+        customer_data = line.strip().split("|")##cleans data
         name, email, street, city, zipcode = customer_data
 
         new_customer = Customer(name, email, street, city, zipcode)
-        customers.append(new_customer)
+        customers.append(new_customer)##assigns each customer+their data to the class
 
-    return customers
+    return customers##returns a list of every object in the customer class
 
 
 def pick_winner(customers):
     """Choose a random winner from list of customers."""
 
-    chosen_customer = random.choice(customers)
+    chosen_customer = choice(customers)
 
     name = chosen_customer.name
     email = chosen_customer.email
@@ -55,3 +58,6 @@ def run_raffle():
 
     customers = get_customers_from_file("customers.txt")
     pick_winner(customers)
+
+
+run_raffle()
